@@ -8,7 +8,7 @@ import Config
 config :stock_tracker, StockTracker.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
+  hostname: "192.168.0.2",
   database: "stock_tracker_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
@@ -28,3 +28,5 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :stock_tracker, :targets, []
