@@ -73,3 +73,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Targets
+config :stock_tracker, :targets, [
+  %{ name: "GForce 3080", url: "http://example.com", delay_ms: 500},
+  %{ name: "GForce 4090", url: "http://example.com", delay_ms: 1000}
+]

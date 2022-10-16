@@ -15,9 +15,10 @@ defmodule StockTracker.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: StockTracker.PubSub},
       # Start the Endpoint (http/https)
-      StockTrackerWeb.Endpoint
+      StockTrackerWeb.Endpoint,
       # Start a worker by calling: StockTracker.Worker.start_link(arg)
       # {StockTracker.Worker, arg}
+      StockTracker.TargetSupervisors
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
