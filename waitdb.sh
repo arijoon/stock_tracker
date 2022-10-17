@@ -6,13 +6,15 @@ do
   sleep 2
 done
 
+app=/opt/app/bin/${APP_NAME} 
+
 # Create database if it doesn't exist.
 if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
   echo "Database $PGDATABASE does not exist. Creating..."
-  mix ecto.create
+  
   echo "Database $PGDATABASE created."
 fi
 
-mix ecto.migrate
+exec $app eval StockTracker.Release.migrate
 
-exec /opt/app/bin/${APP_NAME} foreground
+exec $app start
