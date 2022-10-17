@@ -8,7 +8,6 @@ in
 
 mkShell {
   buildInputs = [
-    (import ./default.nix { inherit pkgs; })
-    mix2nix
+    postgresql
   ] ++ optional stdenv.isLinux inotify-tools;
 }

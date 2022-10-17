@@ -26,8 +26,9 @@ defmodule StockTracker.TargetWorker do
     {:noreply, detail}
   end
 
-  def handle_info(:reply, _) do
+  def handle_info(:reply, state) do
     # Do nothing
+    {:noreply, state}
   end
 
   # API
@@ -38,7 +39,4 @@ defmodule StockTracker.TargetWorker do
     GenServer.start_link(__MODULE__, opts)
   end
 
-  def lookup(pid) do
-    GenServer.call(pid, :lookup)
-  end
 end

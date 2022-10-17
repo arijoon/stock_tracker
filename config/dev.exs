@@ -76,6 +76,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Targets
 config :stock_tracker, :targets, [
-  %{ name: "GForce 3080", url: "http://example.com", delay_ms: 500},
-  %{ name: "GForce 4090", url: "http://example.com", delay_ms: 1000}
+  %{ name: "GForce 3080", url: "http://example.com", delay_ms: 10000}
 ]
+
+config :stock_tracker, :notification_address, "http://192.168.0.2:5010/notification"

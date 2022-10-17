@@ -1,5 +1,5 @@
-{ sources ? import ./nix/sources.nix
-, pkgs ? import sources.nixpkgs { }
+{ 
+  pkgs ? import ./nix/pkgs.nix {}
 }:
 
 with pkgs;
@@ -11,6 +11,5 @@ buildEnv {
   paths = [
     elixir
     nodejs-16_x
-    # postgresql_12
   ];
 }

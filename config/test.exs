@@ -30,3 +30,4 @@ config :logger, level: :warn
 config :phoenix, :plug_init_mode, :runtime
 
 config :stock_tracker, :targets, []
+config :stock_tracker, :notification_address, "http://localhost/notification"

@@ -15,6 +15,8 @@ defmodule StockTracker.TargetRouter do
       end
 
     handler.(target)
+
+    :ok
   end
 
   def nvidia(%StockTracker.Target{} = target) do
@@ -45,6 +47,12 @@ defmodule StockTracker.TargetRouter do
       message: message,
       payload: payload
     })
+
+    alert_result(message, name)
+  end
+
+  def alert_result(message, name) do
+    Phoenix.PubSub.broadcast(:app, "result", %{ message: message, name: name })
   end
 
   def get(_) do
