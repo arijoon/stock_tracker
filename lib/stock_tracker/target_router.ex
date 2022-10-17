@@ -7,7 +7,7 @@ defmodule StockTracker.TargetRouter do
     # Default invidia implementation
     handler =
       case target.url do
-        "https://api.store.nvidia.com/" <> _ ->
+        "https://api.store.nvidia.com" <> _ ->
           &nvidia/1
 
         _ ->
