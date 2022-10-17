@@ -22,7 +22,17 @@ defmodule StockTracker.TargetRouter do
   def nvidia(%StockTracker.Target{} = target) do
     Logger.info("Nvidia matcher for #{inspect(target)}")
 
-    case get(target.url) do
+    headers = [
+      Accept:
+        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0",
+      Host: "api.store.nvidia.com",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept-Language": "en-GB,en;q=0.5"
+    ]
+
+    case get(target.url, headers) do
       {:ok, %{body: body}} ->
         json = Jason.decode!(body)
         product = Enum.at(json["listMap"], 0)
@@ -52,7 +62,7 @@ defmodule StockTracker.TargetRouter do
   end
 
   def alert_result(message, name) do
-    Phoenix.PubSub.broadcast(:app, "result", %{ message: message, name: name })
+    Phoenix.PubSub.broadcast(:app, "result", %{message: message, name: name})
   end
 
 end
