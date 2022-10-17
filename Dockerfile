@@ -23,9 +23,10 @@ ENV APP_NAME=stock_tracker
 
 WORKDIR /opt/app
 
+COPY waitdb.sh .
 COPY --from=builder /opt/built .
 
-CMD trap 'exit' INT; /opt/app/bin/${APP_NAME} foreground
+CMD trap 'exit' INT; ./waitdb.sh
 
 
 
