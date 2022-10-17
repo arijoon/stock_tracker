@@ -34,3 +34,5 @@ npm-debug.log
 
 .elixir_ls/
 
+*.secret.*
+

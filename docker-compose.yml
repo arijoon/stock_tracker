@@ -1,0 +1,33 @@
+version: '3'
+services:
+  stock-tracker:
+    build:
+      context: .
+    environment:
+      MIX_ENV: prod
+      APP_NAME: stock_tracker
+      DATABASE_URL: ecto://postgres:postgres@db/stocktracker_prod
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: fileserver_prod
+      PGPORT: 5432
+      PORT: 9005
+      PGHOST: db
+    ports:
+      # Mapping the port to make the Phoenix app accessible outside of the container
+      - "9005:9005"
+    depends_on:
+      - db
+  db:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      # Set a path where Postgres should store the data
+      PGDATA: /var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - pgdata2:/var/lib/postgresql/data
+# Define the volumes
+volumes:
+  pgdata2:
